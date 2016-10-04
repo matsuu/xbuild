@@ -12,13 +12,13 @@ env:
 addons:
   apt:
     packages:
-      - curl
-      - tar
-      - gzip
-      - libssl-dev
-      - libyaml-dev
-      - libreadline6-dev
-      - zlib1g-dev
-      - libncurses5-dev
+      - libcurl4-openssl-dev
+      - libjpeg-dev
+      - libmcrypt-dev
+      - libtidy-dev
+      - libpng-dev
+      - libxml2-dev
+      - libxslt-dev
+      - pkg-config
 
-script: "./${TARGET/-*}-install ${TARGET/*-} ${TARGET}"
+script: "./${TARGET/-*}-install ${TARGET/*-} /tmp/${TARGET}"
