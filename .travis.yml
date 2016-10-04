@@ -9,4 +9,16 @@ env:
   - TARGET="python-3.5.2"
   - TARGET="ruby-2.3.1"
 
+addons:
+  apt:
+    packages:
+      - curl
+      - tar
+      - gzip
+      - libssl-dev
+      - libyaml-dev
+      - libreadline6-dev
+      - zlib1g-dev
+      - libncurses5-dev
+
 script: "./${TARGET/-*}-install ${TARGET/*-} ${TARGET}"
