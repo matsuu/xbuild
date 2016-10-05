@@ -4,7 +4,7 @@ compiler: gcc
 env:
   - TARGET="go" VERSION="1.7.1"
   - TARGET="node" VERSION="v4.6.0"
-  - TARGET="perl" VERSION="5.24.0" OPTIONS="--jobs 4"
+  - TARGET="perl" VERSION="5.24.0" OPTIONS="-- --jobs 4"
   - TARGET="php" VERSION="7.0.11" PHP_BUILD_EXTRA_MAKE_ARGUMENTS="-j4"
   - TARGET="python" VERSION="3.5.2" MAKE_OPTS="-j4"
   - TARGET="ruby" VERSION="2.3.1" MAKE_OPTS="-j4"
@@ -17,9 +17,7 @@ addons:
       - libtidy-dev
       - re2c
 
-script:
-  - test ${TARGET} -ne "perl" && ./${TARGET}-install ${VERSION} /tmp/${TARGET}-${VERSION}
-  - test ${TARGET} -eq "perl" && ./${TARGET}-install ${VERSION} /tmp/${TARGET}-${VERSION} -- ${OPTIONS}
+script: "./${TARGET}-install ${VERSION} /tmp/${TARGET}-${VERSION} ${OPTIONS}"
 
 after_failure:
   - "test -e /tmp/${USER}-${TARGET}-install.log && cat /tmp/${USER}-${TARGET}-install.log"
