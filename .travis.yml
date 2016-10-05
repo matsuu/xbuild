@@ -17,7 +17,9 @@ addons:
       - libtidy-dev
       - re2c
 
-script: "./${TARGET}-install ${VERSION} /tmp/${TARGET}-${VERSION} -- ${OPTIONS}"
+script:
+  - test ${TARGET} -ne "perl" && ./${TARGET}-install ${VERSION} /tmp/${TARGET}-${VERSION}
+  - test ${TARGET} -eq "perl" && ./${TARGET}-install ${VERSION} /tmp/${TARGET}-${VERSION} -- ${OPTIONS}
 
 after_failure:
   - "test -e /tmp/${USER}-${TARGET}-install.log && cat /tmp/${USER}-${TARGET}-install.log"
